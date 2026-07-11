@@ -670,6 +670,31 @@ body.light .status-announced { color: var(--gold); }
 }
 body.light .rh-val { color: var(--wh); }
 
+/* ── RESULTS TAB — 25% larger, brighter, bigger rings ───── */
+#sec-results .sec-title          { color: #d4eaf8; font-size: 23px; }
+#sec-results .rh-label           { font-size: 13px; color: var(--text-dim); }
+#sec-results .rh-val             { font-size: 28px; color: #d4eaf8; }
+body.light #sec-results .rh-val  { color: var(--wh); }
+#sec-results .podium-game-label  { font-size: 16px; color: #d4eaf8; }
+#sec-results .pp-rank            { font-size: 13px; color: var(--wh-light); }
+#sec-results .pp-name            { font-size: 15px; color: #d4eaf8; max-width: 163px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; word-break: normal; }
+#sec-results .pp-pts             { font-size: 16px; color: #d4eaf8; }
+#sec-results .pp-pedestal        { width: 163px; }
+#sec-results .pp-block           { width: 163px; }
+#sec-results .pp-block.b1        { height: 63px; font-size: 30px; }
+#sec-results .pp-block.b2        { height: 45px; font-size: 25px; }
+#sec-results .pp-block.b3        { height: 33px; font-size: 21px; }
+#sec-results .pp-avatar {
+  width: 135px; height: 135px; font-size: 55px;
+  box-shadow: 0 0 32px currentColor, 0 0 10px currentColor;
+  border-width: 4px;
+}
+#sec-results .pp-avatar.rank-1   { width: 155px; height: 155px; font-size: 65px; background: rgba(240,192,64,.26); }
+#sec-results .pp-avatar.rank-2   { background: rgba(176,196,208,.22); }
+#sec-results .pp-avatar.rank-3   { background: rgba(205,128,80,.22); }
+#sec-results table               { font-size: 16px; }
+#sec-results thead th            { font-size: 14px; color: #d4eaf8; }
+
 /* ── PLAYER REPORT ───────────────────────────────────────── */
 .pr-controls {
   display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap;
@@ -1860,19 +1885,32 @@ function renderGameResult(lg, el) {
   // Header stats
   var slotLabel = lg.slot === 'AM' ? '10 AM' : '7 PM';
   html += '<div class="results-header">' +
-    '<div class="rh-stat"><div class="rh-label">Date</div><div class="rh-val" style="font-size:14px;">' + fmtDate(lg.date) + '</div></div>' +
-    '<div class="rh-stat"><div class="rh-label">Time</div><div class="rh-val" style="font-size:14px;">' + slotLabel + '</div></div>' +
-    '<div class="rh-stat"><div class="rh-label">Game</div><div class="rh-val" style="font-size:14px;">' + esc(lg.gameLabel) + '</div></div>' +
+    '<div class="rh-stat"><div class="rh-label">Date</div><div class="rh-val">' + fmtDate(lg.date) + '</div></div>' +
+    '<div class="rh-stat"><div class="rh-label">Time</div><div class="rh-val">' + slotLabel + '</div></div>' +
+    '<div class="rh-stat"><div class="rh-label">Game</div><div class="rh-val">' + esc(lg.gameLabel) + '</div></div>' +
     '<div class="rh-stat"><div class="rh-label">Players</div><div class="rh-val">' + lg.numPlayers + '</div></div>' +
     '<div class="rh-stat"><div class="rh-label">ITM</div><div class="rh-val">' + lg.itmCount + '</div></div>' +
-    '<div class="rh-stat"><div class="rh-label">Prize Pool</div><div class="rh-val" style="font-size:14px;">' + fmtChips(lg.totalChips + lg.totalBounty) + '</div></div>' +
+    '<div class="rh-stat"><div class="rh-label">Prize Pool</div><div class="rh-val">' + fmtChips(lg.totalChips + lg.totalBounty) + '</div></div>' +
   '</div>';
 
-  // Podium
-  html += '<div class="podium-wrap" id="res-podium-inner"></div>';
+  // Podiums — side by side when bounties present
+  var hasBounty = lg.hasBounty;
+  if (hasBounty) {
+    html += '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">' +
+      '<div style="flex:1;min-width:260px;">' +
+        '<div class="gb-section-label">🏆 Points</div>' +
+        '<div class="podium-wrap" id="res-podium-inner" style="margin-bottom:0;"></div>' +
+      '</div>' +
+      '<div style="flex:1;min-width:260px;">' +
+        '<div class="gb-section-label bty">💰 Bounties</div>' +
+        '<div class="podium-wrap" id="res-bounty-podium-inner" style="margin-bottom:0;"></div>' +
+      '</div>' +
+    '</div>';
+  } else {
+    html += '<div class="podium-wrap" id="res-podium-inner"></div>';
+  }
 
   // Table
-  var hasBounty = lg.hasBounty;
   html += '<div class="card"><div class="tbl-wrap"><table><thead><tr>' +
     '<th>Rank</th><th style="text-align:left;">Player</th><th>Points</th><th>Chips Won</th>' +
     (hasBounty ? '<th>Bounty</th><th>Total</th>' : '') +
@@ -1895,10 +1933,22 @@ function renderGameResult(lg, el) {
   html += '</tbody></table></div></div>';
   el.innerHTML = html;
 
-  // Render podium into the newly created element
+  // Render points podium
   renderPodium('res-podium-inner', lg.players.map(function(p){
     return {rank:p.rank, player:p.player, total:p.points};
   }), lg.gameLabel + ' — ' + slotLabel);
+
+  // Render bounty podium (when applicable)
+  if (hasBounty) {
+    var btyArr = lg.players.filter(function(p){ return (p.bounty||0) > 0; })
+      .slice().sort(function(a,b){ return (b.bounty||0) - (a.bounty||0); });
+    var btyRank = 1;
+    var btyRows = btyArr.map(function(r, i) {
+      if (i > 0 && (r.bounty||0) < (btyArr[i-1].bounty||0)) btyRank = i + 1;
+      return {rank: btyRank, player: r.player, total: r.bounty};
+    });
+    renderPodium('res-bounty-podium-inner', btyRows, lg.gameLabel + ' — ' + slotLabel);
+  }
 }
 
 // ── CALENDAR ──────────────────────────────────────────────────
