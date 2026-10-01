@@ -2687,17 +2687,11 @@ function buildChampionsHtml_(data) {
               '<div class="plaque-year-label">— ' + yr + ' —</div>' +
               '<div class="plaque-row">';
     byYear[yr].forEach(function(c) {
-      var sameWinner = c.points === c.bounties;
       html += '<div class="plaque">' +
-                '<div class="plaque-period">' + esc(c.period) + '</div>';
-      if (sameWinner) {
-        html += '<div class="plaque-row-item"><span class="plaque-label">Points:</span><span class="plaque-val">' + esc(c.points) + '</span></div>' +
-                '<div class="plaque-same-note">Bounties: same</div>';
-      } else {
-        html += '<div class="plaque-row-item"><span class="plaque-label">Points:</span><span class="plaque-val">' + esc(c.points) + '</span></div>' +
-                '<div class="plaque-row-item"><span class="plaque-label">Bounties:</span><span class="plaque-val">' + esc(c.bounties) + '</span></div>';
-      }
-      html += '</div>';
+                '<div class="plaque-period">' + esc(c.period) + '</div>' +
+                '<div class="plaque-row-item"><span class="plaque-label">Points:</span><span class="plaque-val">' + esc(c.points) + '</span></div>' +
+                '<div class="plaque-row-item"><span class="plaque-label">Bounties:</span><span class="plaque-val">' + esc(c.bounties) + '</span></div>' +
+              '</div>';
     });
     html += '</div></div>';
   });
