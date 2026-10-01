@@ -1557,7 +1557,8 @@ var WEBAPP_URL = 'https://script.google.com/macros/s/AKfycby3zbL4dIWX9QEGhU99oYv
     whWAGetGameBoardsForClient:  'gameboards',
     whWAGetAllTimeForClient:     'alltime',
     whWAGetTournamentsForClient: 'tournaments',
-    whWAGetQRowsForClient:       'quarterrows'
+    whWAGetQRowsForClient:       'quarterrows',
+    whWAGetChampionsForClient:   'champions'
   };
   function makeRunner_(ok, fail) {
     var r = {
@@ -1653,6 +1654,7 @@ function loadData(force) {
     // Clear all cached data so every tab re-fetches fresh content
     GAME_BOARDS = null; STATS_DATA = null; PR_PLAYERS = null; PR_QR_CACHE = {}; TOURNAMENTS = null;
     gameBoardsLoading = false; statsLoading = false; prPlayersLoading = false; tournsLoading = false;
+    championsRendered = false;
     sessionStorage.removeItem('wh_primary');
     refreshBtn = document.querySelector('.hdr-btn[onclick="loadData(true)"]');
     if (refreshBtn) { refreshBtn.textContent = '↺ Refreshing…'; refreshBtn.disabled = true; }
@@ -2658,14 +2660,25 @@ function renderChampions() {
   championsRendered = true;
   var el = document.getElementById('champ-plaques');
   if (!el) return;
+  el.innerHTML = '<div class="no-data">Loading champions…</div>';
+  google.script.run
+    .withSuccessHandler(function(data) {
+      // If Champions sheet is seeded, use server data; otherwise fall back to hardcoded.
+      el.innerHTML = buildChampionsHtml_(data && data.length ? data : CHAMPIONS_DATA);
+    })
+    .withFailureHandler(function() {
+      el.innerHTML = buildChampionsHtml_(CHAMPIONS_DATA);
+    })
+    .whWAGetChampionsForClient();
+}
 
-  // Group by year
+function buildChampionsHtml_(data) {
+  if (!data || !data.length) return '<div class="no-data">No champions on record yet.</div>';
   var years = [], byYear = {};
-  CHAMPIONS_DATA.forEach(function(c) {
+  data.forEach(function(c) {
     if (!byYear[c.year]) { byYear[c.year] = []; years.push(c.year); }
     byYear[c.year].push(c);
   });
-
   var html = '';
   years.forEach(function(yr) {
     html += '<div class="plaque-year-group">' +
@@ -2686,8 +2699,7 @@ function renderChampions() {
     });
     html += '</div></div>';
   });
-
-  el.innerHTML = html;
+  return html;
 }
 
 // ── UTILITIES ─────────────────────────────────────────────────
