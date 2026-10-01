@@ -1199,6 +1199,7 @@ body.light .gb-section-label.bty { color: var(--gold); }
       <section id="sec-results" class="section">
         <div class="sec-header">
           <div class="sec-title">Latest Game Results</div>
+          <button class="hdr-btn" id="copy-results-btn" onclick="captureLatestGame()">📷 Copy</button>
         </div>
         <div id="results-content"></div>
       </section>
@@ -1273,6 +1274,7 @@ body.light .gb-section-label.bty { color: var(--gold); }
       <section id="sec-champions" class="section">
         <div class="sec-header">
           <div class="sec-title">Previous Champions</div>
+          <button class="hdr-btn" id="copy-champ-btn" onclick="captureChampions()">📷 Copy</button>
         </div>
         <div class="plaque-board">
           <div class="plaque-board-hdr">
@@ -2674,13 +2676,13 @@ function renderChampions() {
 
 function buildChampionsHtml_(data) {
   if (!data || !data.length) return '<div class="no-data">No champions on record yet.</div>';
-  var years = [], byYear = {};
+  var byYear = {}, orderedYears = [];
   data.forEach(function(c) {
-    if (!byYear[c.year]) { byYear[c.year] = []; years.push(c.year); }
+    if (!byYear[c.year]) { byYear[c.year] = []; orderedYears.push(c.year); }
     byYear[c.year].push(c);
   });
   var html = '';
-  years.forEach(function(yr) {
+  orderedYears.forEach(function(yr) {
     html += '<div class="plaque-year-group">' +
               '<div class="plaque-year-label">— ' + yr + ' —</div>' +
               '<div class="plaque-row">';
@@ -2737,6 +2739,52 @@ function esc(s) {
   if (!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+// ── COPY TO CLIPBOARD ─────────────────────────────────────────
+function whlCaptureEl_(el, btn, origLabel) {
+  if (!el) { alert('Nothing to capture.'); return; }
+  if (btn) { btn.textContent = '⏳ Capturing…'; btn.disabled = true; }
+  var bgColor = document.body.classList.contains('light') ? '#f4f6fb' : '#0a0c14';
+  setTimeout(function() {
+    html2canvas(el, { backgroundColor: bgColor, scale: 2, useCORS: true, logging: false })
+      .then(function(canvas) {
+        return new Promise(function(resolve, reject) {
+          canvas.toBlob(function(blob) {
+            if (!blob) { reject(new Error('toBlob failed')); return; }
+            navigator.clipboard.write([new ClipboardItem({'image/png': blob})])
+              .then(resolve).catch(reject);
+          }, 'image/png');
+        });
+      })
+      .then(function() {
+        if (btn) {
+          btn.textContent = '✓ Copied!';
+          setTimeout(function() { btn.textContent = origLabel; btn.disabled = false; }, 2000);
+        }
+      })
+      .catch(function(err) {
+        console.error('whlCaptureEl_ error:', err);
+        if (btn) {
+          btn.textContent = '⚠ Failed';
+          setTimeout(function() { btn.textContent = origLabel; btn.disabled = false; }, 2000);
+        }
+        alert('Copy failed: ' + err.message + '\nTry a different browser or check clipboard permissions.');
+      });
+  }, 80);
+}
+
+function captureChampions() {
+  var el  = document.querySelector('#sec-champions .plaque-board');
+  var btn = document.getElementById('copy-champ-btn');
+  whlCaptureEl_(el, btn, '📷 Copy');
+}
+
+function captureLatestGame() {
+  var el  = document.getElementById('results-content');
+  var btn = document.getElementById('copy-results-btn');
+  whlCaptureEl_(el, btn, '📷 Copy');
+}
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
