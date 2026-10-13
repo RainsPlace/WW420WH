@@ -991,6 +991,23 @@ body.light .gb-section-label.bty { color: var(--gold); }
   .li-link { display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:20px; border:1px solid var(--border-wh); background:rgba(240,192,64,.06); color:var(--gold); font-size:.71rem; font-weight:700; letter-spacing:.08em; text-decoration:none; transition:all .2s; white-space:nowrap; }
   .li-link:hover { background:rgba(240,192,64,.15); border-color:var(--gold); box-shadow:0 0 10px rgba(240,192,64,.18); }
   .li-note { font-size:.88rem; color:var(--text-dim); font-style:italic; margin-top:8px; text-align:center; line-height:1.7; }
+  .li-org-links { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; }
+  .li-org-link { font-family:'Cinzel',serif; font-size:.71rem; font-weight:700; padding:5px 13px; border-radius:20px; border:1px solid var(--border-wh); color:var(--text-dim); text-decoration:none; transition:all .2s; }
+  .li-org-link:hover { color:var(--gold); border-color:var(--gold-d); background:rgba(240,192,64,.08); }
+  .li-join-note { font-size:.82rem; color:var(--text-dim); margin-top:9px; font-style:italic; line-height:1.5; }
+  /* league accent borders */
+  .li-card.nw .li-card-hdr{border-bottom-color:rgba(46,207,255,.35);} .li-card.nw .li-card-name{color:#2ecfff;} .li-card.nw .li-sched-day{color:#2ecfff;}
+  .li-card.nw .li-link{border-color:rgba(46,207,255,.25);color:#2ecfff;} .li-card.nw .li-link:hover{background:rgba(46,207,255,.1);border-color:#2ecfff;color:#fff;}
+  .li-card.ob .li-card-hdr{border-bottom-color:rgba(176,126,239,.35);} .li-card.ob .li-card-name{color:#b07eef;} .li-card.ob .li-sched-day{color:#b07eef;}
+  .li-card.ob .li-link{border-color:rgba(176,126,239,.25);color:#b07eef;} .li-card.ob .li-link:hover{background:rgba(176,126,239,.1);border-color:#b07eef;color:#fff;}
+  .li-card.wh-acc .li-card-hdr{border-bottom-color:rgba(232,184,75,.35);} .li-card.wh-acc .li-card-name{color:#e8b84b;} .li-card.wh-acc .li-sched-day{color:#e8b84b;}
+  .li-card.wh-acc .li-link{border-color:rgba(232,184,75,.25);color:#e8b84b;} .li-card.wh-acc .li-link:hover{background:rgba(232,184,75,.1);border-color:#e8b84b;color:#fff;}
+  .li-card.eb .li-card-hdr{border-bottom-color:rgba(232,80,80,.35);} .li-card.eb .li-card-name{color:#e85050;} .li-card.eb .li-sched-day{color:#e85050;}
+  .li-card.eb .li-link{border-color:rgba(232,80,80,.25);color:#e85050;} .li-card.eb .li-link:hover{background:rgba(232,80,80,.1);border-color:#e85050;color:#fff;}
+  .li-card.mg .li-card-hdr{border-bottom-color:rgba(160,184,208,.35);} .li-card.mg .li-card-name{color:#a0b8d0;} .li-card.mg .li-sched-day{color:#a0b8d0;}
+  .li-card.mg .li-link{border-color:rgba(160,184,208,.25);color:#a0b8d0;} .li-card.mg .li-link:hover{background:rgba(160,184,208,.1);border-color:#a0b8d0;color:#fff;}
+  .li-card.hr .li-card-hdr{border-bottom-color:rgba(96,192,128,.35);} .li-card.hr .li-card-name{color:#60c080;} .li-card.hr .li-sched-day{color:#60c080;}
+  .li-card.hr .li-link{border-color:rgba(96,192,128,.25);color:#60c080;} .li-card.hr .li-link:hover{background:rgba(96,192,128,.1);border-color:#60c080;color:#fff;}
   @media(max-width:700px) { .li-week-grid { grid-template-columns:1fr; } }
   body.light .li-card { background:#FFFFFF; border-color:#8ab8d8; }
   body.light .li-card-hdr { background:#f0f6fa; border-bottom-color:#8ab8d8; }
@@ -1005,6 +1022,9 @@ body.light .gb-section-label.bty { color: var(--gold); }
   body.light .li-link { background:rgba(128,96,0,.06); border-color:#8ab8d8; color:#806000; }
   body.light .li-link:hover { background:rgba(128,96,0,.14); border-color:#806000; box-shadow:0 0 8px rgba(128,96,0,.14); }
   body.light .li-note { color:#3a5a78; }
+  body.light .li-org-link { border-color:#8ab8d8; color:#3a5a78; }
+  body.light .li-org-link:hover { color:#806000; border-color:#806000; background:rgba(128,96,0,.06); }
+  body.light .li-join-note { color:#3a5a78; }
 </style>
 </head>
 <body>
@@ -1309,113 +1329,94 @@ body.light .gb-section-label.bty { color: var(--gold); }
       <section id="sec-leagueinfo" class="section">
         <div class="li-wrap">
 
-          <p class="li-intro">The best and friendliest players and some of the toughest</p>
+          <p class="li-intro">Six private leagues, one community. From team poker to individual grinders, early birds to night owls &mdash; there&rsquo;s a game for every style and every schedule.</p>
 
-          <!-- ── Nordic Warriors ── -->
-          <div class="li-card">
+          <!-- Nordic Warriors -->
+          <div class="li-card nw">
             <div class="li-card-hdr">
-              <span class="li-card-icon">⚔</span>
+              <span class="li-card-icon">⚔️</span>
               <div class="li-card-titles">
                 <span class="li-card-name">Nordic Warriors</span>
                 <span class="li-card-tag">Individual Points League · Private · 20,000 Chip Entry</span>
               </div>
             </div>
             <div class="li-card-body">
-              <p class="li-desc">Nordic Warriors is an individual points-based league with no attendance requirement. Play any or all games — your top 12 Hold'em finishes and top 12 Omaha Hi/Lo finishes count toward the leaderboard each quarter. Show up when you can, compete at your own pace.</p>
+              <p class="li-desc">Nordic Warriors is an individual points-based league with no attendance requirement. Play any or all games — your top 12 Hold&rsquo;em finishes and top 12 Omaha Hi/Lo finishes count toward the leaderboard each quarter. Show up when you can, compete at your own pace.</p>
               <div class="li-section-title">Weekly Schedule (EST)</div>
               <div class="li-schedule">
                 <div class="li-sched-row"><span class="li-sched-day">Tuesday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Medieval Matrix <span class="li-sched-note">Omaha Hi/Lo</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Friday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Valhalla's Chosen <span class="li-sched-note">NL Hold'em</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Saturday</span><span class="li-sched-time">6:30 PM</span><span class="li-sched-game">Thor's Hammer <span class="li-sched-note">Omaha Hi/Lo</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Saturday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Odin's Army <span class="li-sched-note">NL Hold'em</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Friday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Valhalla&rsquo;s Chosen <span class="li-sched-note">NL Hold'em</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Saturday</span><span class="li-sched-time">6:30 PM</span><span class="li-sched-game">Thor&rsquo;s Hammer <span class="li-sched-note">Omaha Hi/Lo</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Saturday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Odin&rsquo;s Army <span class="li-sched-note">NL Hold'em</span></span></div>
               </div>
               <div class="li-section-title">Links</div>
               <div class="li-links">
-                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/67" target="_blank">🏰 League Lobby</a>
-                <a class="li-link" href="https://rainsplace.github.io/NWWebApp/" target="_blank">📊 Web App Leaderboard</a>
-                <a class="li-link" href="https://docs.google.com/spreadsheets/d/12rb6HCY_sctnkSWpIGYN0aFILAp7lTrrJBxIe7PuoTw/edit?usp=sharing" target="_blank">📋 Sheets Leaderboard</a>
-                <a class="li-link" href="https://forums.replaypoker.com/nordic-warriors-league/43535/9999" target="_blank">💬 Forum</a>
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/67" target="_blank" rel="noopener">🏰 League Lobby</a>
+                <a class="li-link" href="https://rainsplace.github.io/NWWebApp/" target="_blank" rel="noopener">📊 Web App Leaderboard</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/12rb6HCY_sctnkSWpIGYN0aFILAp7lTrrJBxIe7PuoTw/edit?usp=sharing" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
+                <a class="li-link" href="https://forum.casino.org/t/nordic-warriors-league/43535/9999" target="_blank" rel="noopener">💬 Forum</a>
               </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_snowman_" target="_blank" rel="noopener">_snowman_</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
             </div>
           </div>
 
-          <!-- ── Leagues Invitational ── -->
-          <div class="li-card">
+          <!-- Orion's Belt -->
+          <div class="li-card ob">
             <div class="li-card-hdr">
-              <span class="li-card-icon">🎖</span>
+              <span class="li-card-icon">⭐</span>
               <div class="li-card-titles">
-                <span class="li-card-name">Leagues Invitational</span>
-                <span class="li-card-tag">Multi-League · Higher Stakes · Special Events</span>
+                <span class="li-card-name">Orion&rsquo;s Belt Team Poker League</span>
+                <span class="li-card-tag">Team League · Two-Month Cycles · Three Divisions · Once a Week · 20,000 Chip Entry</span>
               </div>
             </div>
             <div class="li-card-body">
-              <p class="li-desc">Leagues Invitational brings together members from multiple leagues for special events and higher-stakes games outside of our regular leaderboards. A place for seasoned players to compete on a bigger stage.</p>
-              <div class="li-section-title">Weekly Games</div>
+              <p class="li-desc">Orion&rsquo;s Belt is a team-based poker league inspired by the three stars in Orion&rsquo;s Belt &mdash; Alnitak, Alnilam, and Mintaka. You play as an individual while competing on a team, with separate tables running simultaneously. Seasons run in two-month cycles across three rotating divisions.</p>
+              <div class="li-section-title">Weekly Schedule (ET)</div>
               <div class="li-schedule">
-                <div class="li-sched-row"><span class="li-sched-day">Sunday</span><span class="li-sched-time">6:30 PM EST</span><span class="li-sched-game">High Roller Open <span class="li-sched-note">NL Hold'em · 250k entry</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Monday</span><span class="li-sched-time">7:00 PM EST</span><span class="li-sched-game">Big Ballerz <span class="li-sched-note">Omaha Hi/Lo · 250k entry</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Wednesday</span><span class="li-sched-time">2:30 PM EST</span><span class="li-sched-game">Whit's Bounty Open <span class="li-sched-note">NL Hold'em · 20k · Rebuy/Addon/Bounties · 500k Guaranteed</span></span></div>
-              </div>
-              <div class="li-section-title">Monthly Specials</div>
-              <div class="li-schedule">
-                <div class="li-sched-row"><span class="li-sched-day">1st Sunday</span><span class="li-sched-time">11:00 AM PST</span><span class="li-sched-game">Player Appreciation <span class="li-sched-note">NL Omaha Hi/Lo · 5k entry · 1,000,000 added</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">3rd Sunday</span><span class="li-sched-time">7:30 PM EST</span><span class="li-sched-game">Main Event <span class="li-sched-note">NL Hold'em · 1M entry</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Last Sunday</span><span class="li-sched-time">11:00 AM PST</span><span class="li-sched-game">Player Appreciation <span class="li-sched-note">NL Hold'em · 5k entry · 1,000,000 added</span></span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Last Wednesday</span><span class="li-sched-time">7:00 PM ET</span><span class="li-sched-game">Midnight Grind Player Appreciation <span class="li-sched-note">NL Hold'em · 20k entry · 1,000,000 added</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Sunday</span><span class="li-sched-time">11:00 AM</span><span class="li-sched-game">Weekly Game <span class="li-sched-note">All three divisions</span></span></div>
               </div>
               <div class="li-section-title">Links</div>
               <div class="li-links">
-                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/77" target="_blank">🏰 League Lobby</a>
-                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1tR7bD0Kv7vuFX_FJVZF7RxsStf6OUI6Nr21LTp9Hp6s/edit?gid=34561392#gid=34561392" target="_blank">📋 High Rollers Leaderboard</a>
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/81" target="_blank" rel="noopener">🏰 Alnitak Lobby</a>
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/82" target="_blank" rel="noopener">🏰 Alnilam Lobby</a>
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/83" target="_blank" rel="noopener">🏰 Mintaka Lobby</a>
+                <a class="li-link" href="https://rainsplace.github.io/OBLB/" target="_blank" rel="noopener">📊 Web App Leaderboard</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/17ikWbLuxYSBvZaQYnoMfsKRzUNlhujPWAHCKFwCRYRI/edit?gid=1885499830#gid=1885499830" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
+                <a class="li-link" href="https://forum.casino.org/t/orions-belt-team-poker/57677/9999" target="_blank" rel="noopener">💬 Forum</a>
+                <a class="li-link" href="https://docs.google.com/document/d/e/2PACX-1vQUMrFRBbHeECRuUf4t3Pmh0_aAtVkaR4CxPh1IPVFXSS4qYeUR8EOAqviqv99ub1wORQIb60CU5qo3/pub" target="_blank" rel="noopener">📖 How It Works</a>
+                <a class="li-link" href="https://script.google.com/macros/s/AKfycbwUHbg75pPTY1-kvNNd8DxRh_CyZCkDNTjrmzcrw8oKA3o3Yw2gOKoNImtazZVchmzD/exec" target="_blank" rel="noopener">🎖 Captain&rsquo;s Hub</a>
               </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_snowman_" target="_blank" rel="noopener">_snowman_</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
             </div>
           </div>
 
-          <!-- ── Midnight Grind ── -->
-          <div class="li-card">
-            <div class="li-card-hdr">
-              <span class="li-card-icon">🌙</span>
-              <div class="li-card-titles">
-                <span class="li-card-name">Midnight Grind Team Poker</span>
-                <span class="li-card-tag">Team League · Private · Played Inside Leagues Invitational</span>
-              </div>
-            </div>
-            <div class="li-card-body">
-              <p class="li-desc">Midnight Grind is a private team poker league whose games run inside the Leagues Invitational lobby. Each session is named after the day it's played. Teams battle across four weekly grinds for a spot on the leaderboard.</p>
-              <div class="li-section-title">Weekly Schedule (9:00 PM EST)</div>
-              <div class="li-schedule">
-                <div class="li-sched-row"><span class="li-sched-day">Monday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Monday Grind</span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Wednesday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Wednesday Grind</span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Thursday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Thursday Grind</span></div>
-                <div class="li-sched-row"><span class="li-sched-day">Sunday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Sunday Grind</span></div>
-              </div>
-              <div class="li-section-title">Links</div>
-              <div class="li-links">
-                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/77" target="_blank">🏰 Leagues Invitational Lobby</a>
-                <a class="li-link" href="https://rainsplace.github.io/MGWebApp/" target="_blank">📊 Web App Leaderboard</a>
-                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1T6rjwont2RfZ2PQY4D6ejgocLeN3WqNH7HYH5jsdpm8/edit?gid=2112906447#gid=2112906447" target="_blank">📋 Sheets Leaderboard</a>
-                <a class="li-link" href="https://rainsplace.github.io/Avatars/" target="_blank">🎭 Team Avatars</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── Wildhorses ── -->
-          <div class="li-card">
+          <!-- Wildhorses -->
+          <div class="li-card wh-acc">
             <div class="li-card-hdr">
               <span class="li-card-icon">🐎</span>
               <div class="li-card-titles">
-                <span class="li-card-name">Weedwoman420's Wildhorses Poker League</span>
-                <span class="li-card-tag">Poker Variety League · Bi-Weekly Rotation · Six Game Types</span>
+                <span class="li-card-name">Weedwoman420&rsquo;s Wildhorses Poker League</span>
+                <span class="li-card-tag">Poker Variety League · Bi-Weekly Rotation · Six Game Types · 20,000 Chip Entry</span>
               </div>
             </div>
             <div class="li-card-body">
-              <p class="li-desc">Wildhorses embraces poker variety in a bi-weekly rotating format inspired by H.O.R.S.E. — six different game types spread across two alternating weeks. Always check the lobby for any schedule updates.</p>
+              <p class="li-desc">Wildhorses embraces poker variety in a bi-weekly rotating format inspired by H.O.R.S.E. &mdash; six different game types spread across two alternating weeks. Always check the lobby for any schedule updates.</p>
               <div class="li-week-grid">
                 <div>
                   <div class="li-section-title">Week One</div>
                   <div class="li-schedule">
-                    <div class="li-sched-row"><span class="li-sched-day">Tue</span><span class="li-sched-time">10:00 AM</span><span class="li-sched-game">NL Royal Hold'em <span class="li-sched-note">(Secretariat)</span></span></div>
-                    <div class="li-sched-row"><span class="li-sched-day">Tue</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">NL Royal Hold'em <span class="li-sched-note">(Pilgrim)</span></span></div>
+                    <div class="li-sched-row"><span class="li-sched-day">Tue</span><span class="li-sched-time">10:00 AM</span><span class="li-sched-game">NL Royal Hold&rsquo;em <span class="li-sched-note">(Secretariat)</span></span></div>
+                    <div class="li-sched-row"><span class="li-sched-day">Tue</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">NL Royal Hold&rsquo;em <span class="li-sched-note">(Pilgrim)</span></span></div>
                     <div class="li-sched-row"><span class="li-sched-day">Thu</span><span class="li-sched-time">10:00 AM</span><span class="li-sched-game">FL 7 Card Stud <span class="li-sched-note">(Silver)</span></span></div>
                     <div class="li-sched-row"><span class="li-sched-day">Thu</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">FL 7 Card Stud <span class="li-sched-note">(Mr Ed)</span></span></div>
                     <div class="li-sched-row"><span class="li-sched-day">Fri</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">NL Omaha Hi/Lo <span class="li-sched-note">(Bullseye)</span></span></div>
@@ -1429,44 +1430,149 @@ body.light .gb-section-label.bty { color: var(--gold); }
                     <div class="li-sched-row"><span class="li-sched-day">Tue</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">PL Omaha <span class="li-sched-note">(Spirit)</span></span></div>
                     <div class="li-sched-row"><span class="li-sched-day">Thu</span><span class="li-sched-time">10:00 AM</span><span class="li-sched-game">FL Stud Hi/Lo <span class="li-sched-note">(Traveler)</span></span></div>
                     <div class="li-sched-row"><span class="li-sched-day">Thu</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">FL Stud Hi/Lo <span class="li-sched-note">(Shadowfax)</span></span></div>
-                    <div class="li-sched-row"><span class="li-sched-day">Fri</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">NL Hold'em <span class="li-sched-note">(Black Beauty)</span></span></div>
-                    <div class="li-sched-row"><span class="li-sched-day">Sat</span><span class="li-sched-time">10:00 AM</span><span class="li-sched-game">NL Hold'em <span class="li-sched-note">(Sea Biscuit)</span></span></div>
+                    <div class="li-sched-row"><span class="li-sched-day">Fri</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">NL Hold&rsquo;em <span class="li-sched-note">(Black Beauty)</span></span></div>
+                    <div class="li-sched-row"><span class="li-sched-day">Sat</span><span class="li-sched-time">10:00 AM</span><span class="li-sched-game">NL Hold&rsquo;em <span class="li-sched-note">(Sea Biscuit)</span></span></div>
                   </div>
                 </div>
               </div>
               <div class="li-section-title">Links</div>
               <div class="li-links">
-                <a class="li-link" href="https://casino.org/replaypoker/leagues/58" target="_blank">🏰 League Lobby</a>
-                <a class="li-link" href="https://rainsplace.github.io/WW420WH/" target="_blank">📊 Web App Leaderboard</a>
-                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1RB39pF7h4wl4WODQsSTmNnQJOcLAIuwVvSvIPTtsiS4/edit?usp=sharing" target="_blank">📋 Sheets Leaderboard</a>
-                <a class="li-link" href="https://forum.casino.org/t/wildhorses-poker-league/37500/9999" target="_blank">💬 Forum</a>
+                <a class="li-link" href="https://casino.org/replaypoker/leagues/58" target="_blank" rel="noopener">🏰 League Lobby</a>
+                <a class="li-link" href="https://mnorrismarshall-web.github.io/Wildhorses/" target="_blank" rel="noopener">📊 Web App Leaderboard</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1RB39pF7h4wl4WODQsSTmNnQJOcLAIuwVvSvIPTtsiS4/edit?usp=sharing" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
+                <a class="li-link" href="https://forum.casino.org/t/wildhorses-poker-league/37500/9999" target="_blank" rel="noopener">💬 Forum</a>
               </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_snowman_" target="_blank" rel="noopener">_snowman_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Weedwoman420" target="_blank" rel="noopener">Weedwoman420</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
             </div>
           </div>
 
-          <!-- ── Orion's Belt ── -->
-          <div class="li-card">
+          <!-- High Roller Series -->
+          <div class="li-card hr">
             <div class="li-card-hdr">
-              <span class="li-card-icon">⭐</span>
+              <span class="li-card-icon">🎰</span>
               <div class="li-card-titles">
-                <span class="li-card-name">Orion's Belt Team Poker League</span>
-                <span class="li-card-tag">Team League · Two-Month Cycles · Three Divisions · Once a Week</span>
+                <span class="li-card-name">High Roller Series</span>
+                <span class="li-card-tag">High Stakes · Weekly Events · Monthly Main Event · 250,000+ Chip Entry</span>
               </div>
             </div>
             <div class="li-card-body">
-              <p class="li-desc">Orion's Belt is a team-based poker league inspired by the three stars in Orion's Belt — Alnitak, Alnilam, and Mintaka. You play as an individual while competing on a team with separate tables, similar to the Replay Team Championship but running all year long. Seasons run in two-month cycles across three rotating divisions. Organizers handle all scheduling — just show up once a week and play.</p>
+              <p class="li-desc">The High Roller Series runs inside the Leagues Invitational lobby and features the highest-stakes games in the private league community. Weekly sessions plus a massive monthly Main Event draw the best players from across all leagues.</p>
+              <div class="li-section-title">Weekly Schedule (EST)</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">Sunday</span><span class="li-sched-time">6:30 PM</span><span class="li-sched-game">High Roller Open <span class="li-sched-note">NL Hold'em · 250k entry</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Monday</span><span class="li-sched-time">7:00 PM</span><span class="li-sched-game">Big Ballerz <span class="li-sched-note">Omaha Hi/Lo · 250k entry</span></span></div>
+              </div>
+              <div class="li-section-title">Monthly Event</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">3rd Sunday</span><span class="li-sched-time">7:30 PM</span><span class="li-sched-game">Main Event <span class="li-sched-note">NL Hold'em · 1M entry · monthly</span></span></div>
+              </div>
               <div class="li-section-title">Links</div>
               <div class="li-links">
-                <a class="li-link" href="https://docs.google.com/document/d/e/2PACX-1vQUMrFRBbHeECRuUf4t3Pmh0_aAtVkaR4CxPh1IPVFXSS4qYeUR8EOAqviqv99ub1wORQIb60CU5qo3/pub" target="_blank">📖 How It Works</a>
-                <a class="li-link" href="https://rainsplace.github.io/OBLB/" target="_blank">📊 Web App Leaderboard</a>
-                <a class="li-link" href="https://docs.google.com/spreadsheets/d/17ikWbLuxYSBvZaQYnoMfsKRzUNlhujPWAHCKFwCRYRI/edit?gid=1885499830#gid=1885499830" target="_blank">📋 Sheets Leaderboard</a>
-                <a class="li-link" href="https://forum.casino.org/t/orions-belt-team-poker/57677/9999" target="_blank">💬 Forum</a>
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/77" target="_blank" rel="noopener">🏰 League Lobby</a>
+                <a class="li-link" href="https://rainsplace.github.io/HighRoller/" target="_blank" rel="noopener">📊 High Rollers Web App</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1tR7bD0Kv7vuFX_FJVZF7RxsStf6OUI6Nr21LTp9Hp6s/edit?gid=34561392#gid=34561392" target="_blank" rel="noopener">📋 High Rollers Leaderboard</a>
               </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_snowman_" target="_blank" rel="noopener">_snowman_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Weedwoman420" target="_blank" rel="noopener">Weedwoman420</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/SuzyQQ" target="_blank" rel="noopener">SuzyQQ</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Rainman772" target="_blank" rel="noopener">Rainman772</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Despina11" target="_blank" rel="noopener">Despina11</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
             </div>
           </div>
 
-          <!-- ── Early Birds ── -->
+          <!-- Whit's Bounty Open & Player Appreciation -->
           <div class="li-card">
+            <div class="li-card-hdr">
+              <span class="li-card-icon">🎖</span>
+              <div class="li-card-titles">
+                <span class="li-card-name">Whit&rsquo;s Bounty Open &amp; Player Appreciation</span>
+                <span class="li-card-tag">Multi-League · Special Events · Open to League Members · 5,000–20,000 Chip Entry</span>
+              </div>
+            </div>
+            <div class="li-card-body">
+              <p class="li-desc">Whit&rsquo;s Bounty Open is a Wednesday afternoon rebuy/addon/bounty tournament open to all league members. Player Appreciation events run monthly — two Sunday MTTs and a special Midnight Grind Wednesday session — with massive added prize pools and no leaderboard pressure.</p>
+              <div class="li-section-title">Whit&rsquo;s Bounty Open</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">Wednesday</span><span class="li-sched-time">2:30 PM EST</span><span class="li-sched-game">Whit&rsquo;s Bounty Open <span class="li-sched-note">NL Hold'em · 20k · Rebuy/Addon/Bounties · 500k Guaranteed</span></span></div>
+              </div>
+              <div class="li-section-title">Player Appreciation Events</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">1st Sunday</span><span class="li-sched-time">11:00 AM PST</span><span class="li-sched-game">Player Appreciation <span class="li-sched-note">NL Omaha Hi/Lo · 5k entry · 1,000,000 added</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Last Sunday</span><span class="li-sched-time">11:00 AM PST</span><span class="li-sched-game">Player Appreciation <span class="li-sched-note">NL Hold'em · 5k entry · 1,000,000 added</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Last Wednesday</span><span class="li-sched-time">7:00 PM ET</span><span class="li-sched-game">Midnight Grind Player Appreciation <span class="li-sched-note">NL Hold'em · 20k entry · 1,000,000 added</span></span></div>
+              </div>
+              <div class="li-section-title">Links</div>
+              <div class="li-links">
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/77" target="_blank" rel="noopener">🏰 League Lobby</a>
+                <a class="li-link" href="https://rainsplace.github.io/Player-Appreciation/" target="_blank" rel="noopener">📊 Player Appreciation Web App</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1E47o1t4A5CcSoFHOq9_sfQOztZQmgP5Lx9s9RNcNW8I/edit?gid=2100284398#gid=2100284398" target="_blank" rel="noopener">📋 Player Appreciation Leaderboard</a>
+              </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_snowman_" target="_blank" rel="noopener">_snowman_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Weedwoman420" target="_blank" rel="noopener">Weedwoman420</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/SuzyQQ" target="_blank" rel="noopener">SuzyQQ</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Rainman772" target="_blank" rel="noopener">Rainman772</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Despina11" target="_blank" rel="noopener">Despina11</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
+            </div>
+          </div>
+
+          <!-- Midnight Grind -->
+          <div class="li-card mg">
+            <div class="li-card-hdr">
+              <span class="li-card-icon">🌙</span>
+              <div class="li-card-titles">
+                <span class="li-card-name">Midnight Grind Team Poker</span>
+                <span class="li-card-tag">Team League · Private · Played Inside Leagues Invitational · 20,000 Chip Entry</span>
+              </div>
+            </div>
+            <div class="li-card-body">
+              <p class="li-desc">Midnight Grind is a private team poker league whose games run inside the Leagues Invitational lobby. Each session is named after the day it&rsquo;s played. Teams battle across four weekly grinds for a spot on the leaderboard.</p>
+              <div class="li-section-title">Weekly Schedule (9:00 PM EST)</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">Monday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Monday Grind</span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Wednesday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Wednesday Grind</span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Thursday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Thursday Grind</span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Sunday</span><span class="li-sched-time">9:00 PM</span><span class="li-sched-game">Sunday Grind</span></div>
+              </div>
+              <div class="li-section-title">Links</div>
+              <div class="li-links">
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/77" target="_blank" rel="noopener">🏰 Leagues Invitational Lobby</a>
+                <a class="li-link" href="https://rainsplace.github.io/MGWebApp/" target="_blank" rel="noopener">📊 Web App Leaderboard</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1T6rjwont2RfZ2PQY4D6ejgocLeN3WqNH7HYH5jsdpm8/edit?gid=2112906447#gid=2112906447" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
+                <a class="li-link" href="https://rainsplace.github.io/Avatars/" target="_blank" rel="noopener">🎭 Team Avatars</a>
+              </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_snowman_" target="_blank" rel="noopener">_snowman_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/SuzyQQ" target="_blank" rel="noopener">SuzyQQ</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Rainman772" target="_blank" rel="noopener">Rainman772</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Despina11" target="_blank" rel="noopener">Despina11</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
+            </div>
+          </div>
+
+          <!-- Early Birds -->
+          <div class="li-card eb">
             <div class="li-card-hdr">
               <span class="li-card-icon">🐦</span>
               <div class="li-card-titles">
@@ -1475,7 +1581,7 @@ body.light .gb-section-label.bty { color: var(--gold); }
               </div>
             </div>
             <div class="li-card-body">
-              <p class="li-desc">Early Birds is a team-based private league with daily midday games in both MTT and cutthroat formats. Five game types rotate through the week, with each scored session paired with a fast-paced cutthroat event. Monthly Members Appreciation games are open to all with no maximum player count and an added prize pool.</p>
+              <p class="li-desc">Early Birds is a team-based private league with daily midday games in both MTT and cutthroat formats. Five game types rotate through the week, with each scored session paired with a fast-paced cutthroat event. Monthly Members Appreciation games are open to all with an added prize pool.</p>
               <div class="li-section-title">Weekly Schedule (EDT)</div>
               <div class="li-schedule">
                 <div class="li-sched-row"><span class="li-sched-day">Monday</span><span class="li-sched-time">2:30 PM</span><span class="li-sched-game">Royal Tea Party <span class="li-sched-note">NL Royal Hold'em · 6-max · + Cutthroat Royal</span></span></div>
@@ -1486,19 +1592,67 @@ body.light .gb-section-label.bty { color: var(--gold); }
               </div>
               <div class="li-section-title">Monthly Events</div>
               <div class="li-schedule">
-                <div class="li-sched-row"><span class="li-sched-day">1st &amp; Last Sunday</span><span class="li-sched-time">2:30 PM EDT</span><span class="li-sched-game">Members Appreciation MTT <span class="li-sched-note">NL Hold'em or Omaha Hi/Lo · Bounties · Added Prize Pool · Not Scored</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">1st &amp; Last Sun</span><span class="li-sched-time">2:30 PM EDT</span><span class="li-sched-game">Members Appreciation MTT <span class="li-sched-note">NL Hold'em or Omaha Hi/Lo · Bounties · Added Prize Pool · Not Scored</span></span></div>
               </div>
               <div class="li-section-title">Links</div>
               <div class="li-links">
-                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/65" target="_blank">🏰 League Lobby</a>
-                <a class="li-link" href="https://rainsplace.github.io/EBApp/" target="_blank">📊 Web App Leaderboard</a>
-                <a class="li-link" href="https://docs.google.com/spreadsheets/d/15uamnSc938MlU2FWu0KQibobJYtALHKU_Wgkf7VhTOQ/edit?gid=2112906447#gid=2112906447" target="_blank">📋 Sheets Leaderboard</a>
-                <a class="li-link" href="https://docs.google.com/document/d/1Whcr8I2p2DkAgavXwNzMfeEHM9tByjaK7wzUC_04xes/edit?usp=sharing" target="_blank">📖 New Player Info</a>
+                <a class="li-link" href="https://www.casino.org/replaypoker/leagues/65" target="_blank" rel="noopener">🏰 League Lobby</a>
+                <a class="li-link" href="https://rainsplace.github.io/EBApp/" target="_blank" rel="noopener">📊 Web App Leaderboard</a>
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/15uamnSc938MlU2FWu0KQibobJYtALHKU_Wgkf7VhTOQ/edit?gid=2112906447#gid=2112906447" target="_blank" rel="noopener">📋 Sheets Leaderboard</a>
+                <a class="li-link" href="https://docs.google.com/document/d/1Whcr8I2p2DkAgavXwNzMfeEHM9tByjaK7wzUC_04xes/edit?usp=sharing" target="_blank" rel="noopener">📖 New Player Info</a>
+                <a class="li-link" href="https://script.google.com/macros/s/AKfycbwyseXz3fBGATsMZjcgAdvpm3w_dPrOM9vOwIlkwyn-I1J05pIGablBnAaSnJU7B8RWEA/exec" target="_blank" rel="noopener">🎖 Captain&rsquo;s Hub</a>
               </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Weedwoman420" target="_blank" rel="noopener">Weedwoman420</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/SuzyQQ" target="_blank" rel="noopener">SuzyQQ</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Grampenstein" target="_blank" rel="noopener">Grampenstein</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
+              </div>
+              <p class="li-join-note">Interested in joining? Send a message or friend request to any organizer above.</p>
             </div>
           </div>
 
-          <p class="li-note">Interested in joining any of these leagues? Let Michael or any of the organizers know — happy to have you on board, whether as a friend or a player.</p>
+          <!-- Gramps University -->
+          <div class="li-card eb">
+            <div class="li-card-hdr">
+              <span class="li-card-icon">🎓</span>
+              <div class="li-card-titles">
+                <span class="li-card-name">Gramps University</span>
+                <span class="li-card-tag">Early Birds Training League · Open to EB Members · 1,000 Chip Entry</span>
+              </div>
+            </div>
+            <div class="li-card-body">
+              <p class="li-desc">Gramps University is the Early Birds training camp &mdash; a low-stakes practice league where members sharpen their skills across rotating game types to prepare for team competition. Entry is just 1,000 chips, so there&rsquo;s no pressure, only practice. GU also serves as the home for Early Birds Members Appreciation events, open to all EB members with a generous added prize pool.</p>
+              <div class="li-section-title">Friday Rotation (2:30 PM EDT)</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">Week 1</span><span class="li-sched-time">Friday</span><span class="li-sched-game">FL 7 Card Stud Hi/Lo <span class="li-sched-note">1,000 chip entry</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Week 2</span><span class="li-sched-time">Friday</span><span class="li-sched-game">NL Omaha Hi/Lo <span class="li-sched-note">1,000 chip entry</span></span></div>
+                <div class="li-sched-row"><span class="li-sched-day">Week 3</span><span class="li-sched-time">Friday</span><span class="li-sched-game">NL Royal Hold&rsquo;em <span class="li-sched-note">1,000 chip entry</span></span></div>
+              </div>
+              <div class="li-section-title">Members Appreciation Events</div>
+              <div class="li-schedule">
+                <div class="li-sched-row"><span class="li-sched-day">1st &amp; Last Sun</span><span class="li-sched-time">2:30 PM EDT</span><span class="li-sched-game">Members Appreciation MTT <span class="li-sched-note">NL Hold'em or Omaha Hi/Lo · Alternating · Added Prize Pool</span></span></div>
+              </div>
+              <div class="li-section-title">Links</div>
+              <div class="li-links">
+                <a class="li-link" href="https://docs.google.com/spreadsheets/d/1qZphyZeFvod-Eecm1HAt9PJZphx-CiZlJHC5n-sZCrI/edit?gid=1313007334#gid=1313007334" target="_blank" rel="noopener">📋 Leaderboard</a>
+                <a class="li-link" href="https://script.google.com/macros/s/AKfycbwyseXz3fBGATsMZjcgAdvpm3w_dPrOM9vOwIlkwyn-I1J05pIGablBnAaSnJU7B8RWEA/exec" target="_blank" rel="noopener">🎖 EB Captain&rsquo;s Hub</a>
+              </div>
+              <div class="li-section-title">Organizers</div>
+              <div class="li-org-links">
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Grampenstein" target="_blank" rel="noopener">Grampenstein</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Weedwoman420" target="_blank" rel="noopener">Weedwoman420</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/SuzyQQ" target="_blank" rel="noopener">SuzyQQ</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/_Rain_" target="_blank" rel="noopener">_Rain_</a>
+                <a class="li-org-link" href="https://www.casino.org/replaypoker/profile/Sue13" target="_blank" rel="noopener">Sue13</a>
+              </div>
+              <p class="li-join-note">Early Birds members are welcome anytime &mdash; just show up and play. Questions? Reach out to any organizer above.</p>
+            </div>
+          </div>
+
+          <p class="li-note">Interested in joining any of these leagues? Let _Rain_ or any of the organizers know &mdash; happy to have you on board.</p>
 
         </div>
       </section>
